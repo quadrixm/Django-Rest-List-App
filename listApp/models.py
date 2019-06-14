@@ -16,7 +16,7 @@ class ItemManager(models.Manager):
 class Item(models.Model):
     name = models.CharField(max_length=100)
     quantity = models.IntegerField(default=0)
-    image = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to='uploads')
     date = models.DateTimeField('date published')
 
     objects = ItemManager()
