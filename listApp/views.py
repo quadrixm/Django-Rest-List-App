@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
+from rest_framework.renderers import JSONRenderer
 
 from listApp.models import Item
 from listApp.serializers import UserSerializer, GroupSerializer, ItemSerializer
@@ -11,6 +12,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
+    renderer_classes = (JSONRenderer, )
 
 
 class GroupViewSet(viewsets.ModelViewSet):
@@ -19,6 +21,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+    renderer_classes = (JSONRenderer, )
 
 
 class ItemViewSet(viewsets.ModelViewSet):
@@ -27,3 +30,4 @@ class ItemViewSet(viewsets.ModelViewSet):
     """
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+    renderer_classes = (JSONRenderer, )
