@@ -20,8 +20,5 @@ class Migration(migrations.Migration):
                 ('quantity', models.IntegerField(default=0)),
                 ('date', models.DateTimeField(verbose_name='date published')),
             ],
-            managers=[
-                ('objects', listApp.models.ItemManager()),
-            ],
         ),
     ]
