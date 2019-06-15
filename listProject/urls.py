@@ -18,6 +18,7 @@ from django.urls import include, path
 from rest_framework import routers
 
 from listApp import views
+from listApp.views import FileUploadView
 
 router = routers.DefaultRouter()
 router.register(r'items', views.ItemViewSet)
@@ -28,6 +29,7 @@ router.register(r'groups', views.GroupViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
+    path('upload/', FileUploadView.as_view()),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
 ]
