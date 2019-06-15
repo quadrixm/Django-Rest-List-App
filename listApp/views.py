@@ -48,6 +48,11 @@ class FileUploadView(APIView):
         # else:
         #     return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        print(request)
+        # TODO iterate dictionary to get the id and the file for request.data
+
+        for key, val in request.data.items():
+            item = Item.objects.get(id=key)
+            item.photo = val
+            item.save()
 
         return Response(None, status=status.HTTP_200_OK)
