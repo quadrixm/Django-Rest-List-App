@@ -40,10 +40,11 @@ class FileUploadView(APIView):
     parser_class = (FileUploadParser,)
 
     def post(self, request, *args, **kwargs):
-
+        uploadedIds = {}
         for key, val in request.data.items():
             item = Item.objects.get(id=key)
             item.photo = val
             item.save()
+            uploadedIds[item.id] = "http://localhost:8000" + item.photo.url
 
-        return Response(None, status=status.HTTP_200_OK)
+        return Response(uploadedIds, status=status.HTTP_200_OK)
